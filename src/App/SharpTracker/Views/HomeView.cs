@@ -6,8 +6,7 @@ namespace SharpTracker.Views
 {
 	public class HomeView : BaseContentPage
 	{
-		public HomeView(IApp app)
-			: base(app)
+		public HomeView()
 		{
 			Content = new StackLayout
 			{

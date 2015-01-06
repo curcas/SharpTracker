@@ -1,19 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SharpTracker/Views/LoginView.cs">
-    <Files>
-      <File FileName="SharpTracker/Views/LoginView.cs" Line="7" Column="7" />
-      <File FileName="SharpTracker/ViewModels/LoginViewModel.cs" Line="35" Column="35" />
-      <File FileName="SharpTracker/Core/ViewModels/IViewModel.cs" Line="46" Column="46" />
-      <File FileName="SharpTracker/Core/Views/BaseContentPage.cs" Line="44" Column="44" />
-      <File FileName="SharpTracker/Core/Request.cs" Line="16" Column="16" />
-      <File FileName="SharpTracker.iOS/AppDelegate.cs" Line="63" Column="63" />
-      <File FileName="SharpTracker.iOS/App.cs" Line="5" Column="5" />
-      <File FileName="SharpTracker.Android/App.cs" Line="27" Column="27" />
-      <File FileName="SharpTracker/Views/HomeView.cs" Line="5" Column="5" />
-      <File FileName="SharpTracker.iOS/Main.cs" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

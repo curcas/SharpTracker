@@ -11,6 +11,9 @@ using Android.OS;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms;
 using SharpTracker.Views;
+using System.ComponentModel.Design;
+using SharpTracker.Core;
+using Hjerpbakk.FermiContainer;
 
 
 namespace SharpTracker.Android
@@ -18,13 +21,11 @@ namespace SharpTracker.Android
 	[Activity (Label = "SharpTracker.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : AndroidActivity
 	{
-		private App App { get; set; }
 		private NavigationPage Page { get; set; }
 
 		public MainActivity()
 		{
-			App = new App();
-			App.Logout();
+			FermiContainer.DefaultInstance.Register<IApp, App> ();
 		}
 
 		protected override void OnCreate(Bundle bundle)
@@ -33,7 +34,7 @@ namespace SharpTracker.Android
 
 			Forms.Init(this, bundle);
 
-			Page = new NavigationPage(new HomeView(App));
+			Page = new NavigationPage(new HomeView());
 			SetPage(Page);
 		}
 	}

@@ -1,5 +1,7 @@
 ﻿using SharpTracker.Views;
 using Xamarin.Forms;
+using Hjerpbakk.FermiContainer;
+
 
 namespace SharpTracker.Core.Views
 {
@@ -7,9 +9,9 @@ namespace SharpTracker.Core.Views
 	{
 		private readonly IApp _app;
 
-		protected BaseContentPage(IApp app)
+		protected BaseContentPage()
 		{
-			_app = app;
+			_app = FermiContainer.DefaultInstance.Resolve<IApp> ();
 		}
 
 		protected override void OnAppearing()
@@ -19,7 +21,6 @@ namespace SharpTracker.Core.Views
 			if (!BasePage.IsLoggedIn(_app.GetToken))
 			{
 				Navigation.PushModalAsync(new LoginView(_app.OnLoginButtonClicked));
-				//Navigation.PushAsync(new Login(_app.OnLoginButtonClicked, OnLoginFinished));
 			}
 		}
 
