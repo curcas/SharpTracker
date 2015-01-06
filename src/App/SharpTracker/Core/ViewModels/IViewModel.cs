@@ -6,5 +6,6 @@ namespace SharpTracker.Core.ViewModels
 	{
 		bool IsValid();
 		IList<string> GetValidationMessages();
+		IDictionary<string, object> ToDictionary();
 	}
 }

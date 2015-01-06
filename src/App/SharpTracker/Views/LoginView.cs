@@ -1,13 +1,14 @@
 ﻿using System;
 using SharpTracker.ViewModels;
 using Xamarin.Forms;
+using SharpTracker.Models;
 
 namespace SharpTracker.Views
 {
 	public class LoginView : ContentPage
 	{
 		private static bool _isLoginButtonOngoing;
-		private static Action<string, string, Action> _loginButtonAction;
+		private static Action<LoginModel, Action> _loginButtonAction;
 		private LoginViewModel _loginViewModel;
 
 		private Entry UsernameEntry { get; set;}
@@ -18,7 +19,7 @@ namespace SharpTracker.Views
 			get { return _loginViewModel ?? (_loginViewModel = new LoginViewModel()); }
 		}
 
-		public LoginView(Action<string, string, Action> loginButtonAction)
+		public LoginView(Action<LoginModel, Action> loginButtonAction)
 		{
 			BindingContext = Model;
 
@@ -40,14 +41,14 @@ namespace SharpTracker.Views
 				VerticalOptions = LayoutOptions.Center,
 				Children =
 					{
-					UsernameEntry,
-					PasswordEntry,
+						UsernameEntry,
+						PasswordEntry,
 						loginButton
 					}
 			};
 		}
 
-		private void OnLoginClicked(object sender, EventArgs e)
+		private async void OnLoginClicked(object sender, EventArgs e)
 		{
 			if (_loginViewModel.IsValid())
 			{
@@ -58,7 +59,8 @@ namespace SharpTracker.Views
 					var action = _loginButtonAction;
 					if (action != null)
 					{
-						action.Invoke(UsernameEntry.Text, PasswordEntry.Text, () => Navigation.PopModalAsync());
+						var loginModel = await Request<LoginModel>.Post("/login", _loginViewModel.ToDictionary());
+						action.Invoke(loginModel, () => Navigation.PopModalAsync());
 					}
 
 					_isLoginButtonOngoing = false;

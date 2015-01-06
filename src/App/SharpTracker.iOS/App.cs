@@ -1,6 +1,7 @@
 ﻿using System;
 using SharpTracker.Core;
 using MonoTouch.Foundation;
+using SharpTracker.Models;
 
 namespace SharpTracker.iOS
 {
@@ -11,14 +12,11 @@ namespace SharpTracker.iOS
 			return NSUserDefaults.StandardUserDefaults.StringForKey ("LoginToken");
 		}
 
-		public async void OnLoginButtonClicked(string username, string password, Action callback)
+		public async void OnLoginButtonClicked(LoginModel model, Action callback)
 		{
-			var controller = new LoginController();
-			var result = await controller.DoLogin(username, password);
-
-			if (!string.IsNullOrEmpty(result.Token))
+			if (!string.IsNullOrEmpty(model.Token))
 			{
-				NSUserDefaults.StandardUserDefaults.SetString (result.Token, "LoginToken");
+				NSUserDefaults.StandardUserDefaults.SetString (model.Token, "LoginToken");
 				callback.Invoke();
 			}
 		}

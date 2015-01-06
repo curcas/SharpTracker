@@ -33,7 +33,7 @@ namespace SharpTracker.Android
 
 			Forms.Init(this, bundle);
 
-			Page = new NavigationPage(new HomseView(App));
+			Page = new NavigationPage(new HomeView(App));
 			SetPage(Page);
 		}
 	}

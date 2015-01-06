@@ -38,5 +38,14 @@ namespace SharpTracker.ViewModels
 		{
 			return ValidationMessages;
 		}
+
+		public IDictionary<string, object> ToDictionary(){
+			var x = new Dictionary<string, object> ();
+
+			x.Add ("name", Username);
+			x.Add ("password", Password);
+
+			return x;
+		}
 	}
 }

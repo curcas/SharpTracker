@@ -2,7 +2,7 @@
 using Android.App;
 using Android.Content;
 using SharpTracker.Core;
-using SharpTracker.Shared;
+using SharpTracker.Models;
 
 namespace SharpTracker.Android
 {
@@ -23,16 +23,13 @@ namespace SharpTracker.Android
 			editable.Commit();
 		}
 
-		public async void OnLoginButtonClicked(string username, string password, Action calllback)
+		public void OnLoginButtonClicked(LoginModel model, Action calllback)
 		{
-			var controller = new LoginController();
-			var result = await controller.DoLogin(username, password);
-
-			if (!string.IsNullOrEmpty(result.Token))
+			if (!string.IsNullOrEmpty(model.Token))
 			{
 				var preferences = Application.Context.GetSharedPreferences("UserData", FileCreationMode.Private);
 				var editable = preferences.Edit();
-				editable.PutString("Token", result.Token);
+				editable.PutString("Token", model.Token);
 				editable.Commit();
 
 				calllback.Invoke();

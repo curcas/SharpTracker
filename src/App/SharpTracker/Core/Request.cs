@@ -8,7 +8,7 @@ namespace SharpTracker
 {
 	public class Request<T> where T : new()
 	{
-		private const string BaseUrl = "http://192.168.1.48:1234/api/v1";
+		private const string BaseUrl = "http://192.168.1.20:1234/api/v1";
 
 		public async static Task<T> Post(string url, IEnumerable<KeyValuePair<string, object>> parameters)
 		{
