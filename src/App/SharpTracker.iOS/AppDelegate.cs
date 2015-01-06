@@ -7,6 +7,8 @@ using MonoTouch.UIKit;
 
 using Xamarin.Forms;
 using SharpTracker.Views;
+using Hjerpbakk.FermiContainer;
+using SharpTracker.Core;
 
 namespace SharpTracker.iOS
 {
@@ -14,25 +16,24 @@ namespace SharpTracker.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-		private App _app { get; set;}
-
-		public AppDelegate ()
-		{
-			_app = new App ();
-			_app.Logout ();
-		}
 
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
+			PrepareDependecyInjection ();
 			Forms.Init();
 
 			window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-			window.RootViewController = new NavigationPage(new HomeView(_app)).CreateViewController();
+			window.RootViewController = new NavigationPage(new HomeView()).CreateViewController();
 			window.MakeKeyAndVisible();
 
 			return true;
 		}
+
+		private void PrepareDependecyInjection(){
+			FermiContainer.DefaultInstance.Register<IApp, App> ();
+		}
+
 	}
 }
 

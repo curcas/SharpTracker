@@ -93,7 +93,7 @@ Global
 		{F6FDCB7F-5A8F-47DF-9A10-9ED411236B8C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SharpTracker.iOS\SharpTracker.iOS.csproj
+		StartupItem = SharpTracker.Android\SharpTracker.Android.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

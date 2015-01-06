@@ -21,21 +21,18 @@ namespace SharpTracker.Android
 	[Activity (Label = "SharpTracker.Android.Android", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : AndroidActivity
 	{
-		private NavigationPage Page { get; set; }
-
-		public MainActivity()
-		{
-			FermiContainer.DefaultInstance.Register<IApp, App> ();
-		}
-
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate(bundle);
 
 			Forms.Init(this, bundle);
+			PrepareDependecyInjection ();
 
-			Page = new NavigationPage(new HomeView());
-			SetPage(Page);
+			SetPage(new NavigationPage(new HomeView()));
+		}
+
+		private void PrepareDependecyInjection(){
+			FermiContainer.DefaultInstance.Register<IApp, App> ();
 		}
 	}
 }
