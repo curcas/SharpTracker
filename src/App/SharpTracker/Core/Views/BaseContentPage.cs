@@ -7,26 +7,31 @@ namespace SharpTracker.Core.Views
 {
 	public class BaseContentPage : ContentPage
 	{
-		private readonly IApp _app;
+		public readonly IApp App;
 
 		protected BaseContentPage()
 		{
-			_app = FermiContainer.DefaultInstance.Resolve<IApp> ();
+			App = FermiContainer.DefaultInstance.Resolve<IApp> ();
+		}
+
+		public virtual void onLoad (){
 		}
 
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 
-			if (!BasePage.IsLoggedIn(_app.GetToken))
-			{
-				Navigation.PushModalAsync(new LoginView(_app.OnLoginButtonClicked));
+			if (!BasePage.IsLoggedIn (App.GetToken)) {
+				Navigation.PushModalAsync (new LoginView (App.OnLoginButtonClicked, OnLoginFinished));
+			} else {
+				onLoad ();
 			}
 		}
 
 		private void OnLoginFinished()
 		{
-			Navigation.PopAsync();
+			Navigation.PopModalAsync ();
+			onLoad ();
 		}
 	}
 }

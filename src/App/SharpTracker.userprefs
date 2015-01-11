@@ -1,12 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.testing" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SharpTracker/Views/LoginView.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.cc-Tracker" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SharpTracker\Views\WorkTypeList.cs">
     <Files>
-      <File FileName="SharpTracker/Views/LoginView.cs" Line="38" Column="38" />
+      <File FileName="SharpTracker\Views\WorkTypeList.cs" Line="6" Column="6" />
+      <File FileName="SharpTracker\Views\LoginView.cs" Line="3" Column="3" />
+      <File FileName="SharpTracker\ViewModels\BaseViewModel.cs" Line="53" Column="53" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" line="1291" column="28" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

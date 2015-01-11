@@ -28,7 +28,7 @@ namespace SharpTracker.Android
 			Forms.Init(this, bundle);
 			PrepareDependecyInjection ();
 
-			SetPage(new NavigationPage(new HomeView()));
+			SetPage(new NavigationPage(new WorkTypeList()));
 		}
 
 		private void PrepareDependecyInjection(){

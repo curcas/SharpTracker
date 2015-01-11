@@ -2,6 +2,7 @@
 using SharpTracker.ViewModels;
 using Xamarin.Forms;
 using SharpTracker.Models;
+using SharpTracker.Core.Views;
 
 namespace SharpTracker.Views
 {
@@ -10,6 +11,7 @@ namespace SharpTracker.Views
 		private static bool _isLoginButtonOngoing;
 		private static Action<LoginModel, Action> _loginButtonAction;
 		private LoginViewModel _loginViewModel;
+		private Action _onLoginFinished;
 
 		private Entry UsernameEntry { get; set;}
 		private Entry PasswordEntry { get; set;}
@@ -19,11 +21,12 @@ namespace SharpTracker.Views
 			get { return _loginViewModel ?? (_loginViewModel = new LoginViewModel()); }
 		}
 
-		public LoginView(Action<LoginModel, Action> loginButtonAction)
+		public LoginView(Action<LoginModel, Action> loginButtonAction, Action onLoginFinished)
 		{
 			BindingContext = Model;
 
 			_loginButtonAction = loginButtonAction;
+			_onLoginFinished = onLoginFinished;
 
 			UsernameEntry = new Entry { Placeholder = "Username" };
 			UsernameEntry.SetBinding(Entry.TextProperty, "Username");
@@ -60,7 +63,7 @@ namespace SharpTracker.Views
 					if (action != null)
 					{
 						var loginModel = await Request<LoginModel>.Post("/login", _loginViewModel.ToDictionary());
-						action.Invoke(loginModel, () => Navigation.PopModalAsync());
+						action.Invoke(loginModel, _onLoginFinished);
 					}
 
 					_isLoginButtonOngoing = false;
@@ -68,7 +71,7 @@ namespace SharpTracker.Views
 			}
 			else
 			{
-				DisplayAlert("Error", string.Join(Environment.NewLine, _loginViewModel.GetValidationMessages()), "OK");
+				await DisplayAlert("Error", string.Join(Environment.NewLine, _loginViewModel.GetValidationMessages()), "OK");
 			}
 		}
 	}
